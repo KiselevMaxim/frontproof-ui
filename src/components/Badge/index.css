@@ -1,0 +1,41 @@
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #0B1717;
+    border-radius: 32px;
+    padding: 6px 24px 6px 12px;
+    position: relative;
+    background-clip: padding-box;
+    color: #22BCB7;
+}
+
+.badge::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    background: radial-gradient(100% 221.57% at 0% 0%, #22BCB7 0%, #155E5B 49.69%, #22BCB7 100%);
+    z-index: -1;
+    border-radius: 32px;
+}
+
+.badge-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-title {
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.badge-subtitle {
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF7A;
+}
