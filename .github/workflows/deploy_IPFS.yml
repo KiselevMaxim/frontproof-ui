@@ -36,3 +36,6 @@ jobs:
           node utils/proposeVersion.js
         env: 
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          CID: ${{ steps.deploy_IPFS.outputs.HASH }}
+          
+
