@@ -36,9 +36,10 @@ async function run() {
     //txUnsigned.gasPrice = await provider.getGasPrice();
 
     console.log("txUnsigned", txUnsigned);
-
-    const txSigned = await wallet.signTransaction(txUnsigned);
+    const txSigned = await wallet.signTransaction(txUnsigned)
+    console.log("ttxSigned", txSigned);;
     const submittedTx = await wallet.sendTransaction(txSigned);
+    console.log("submittedTx");;
     const txReceipt = await submittedTx.wait();
     if (txReceipt.status === 0)
         throw new Error("proposeVersion transaction failed");
