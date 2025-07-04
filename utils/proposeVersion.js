@@ -1,4 +1,4 @@
-import { JsonRpcProvider } from 'ethers';
+import { ethers, JsonRpcProvider } from 'ethers';
 
 async function run() {
     const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
