@@ -35,10 +35,10 @@ async function run() {
     txUnsigned.chainId = /* await wallet.provider.getNetwork(); */ 11155111n; // chainId 11155111 for Sepolia
     //txUnsigned.gasPrice = await provider.getGasPrice();
 
-    console.log("txUnsigned", txUnsigned);
+    /* console.log("txUnsigned", txUnsigned);
     const txSigned = await wallet.signTransaction(txUnsigned)
-    console.log("ttxSigned", txSigned);;
-    const submittedTx = await wallet.sendTransaction(txSigned);
+    console.log("ttxSigned", txSigned);*/
+    const submittedTx = await wallet.sendTransaction(txUnsigned);
     console.log("submittedTx");;
     const txReceipt = await submittedTx.wait();
     if (txReceipt.status === 0)
