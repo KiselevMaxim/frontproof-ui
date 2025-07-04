@@ -27,10 +27,20 @@ async function run() {
     ]
 
     const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, wallet);
-    let tx = await frontProof.proposeVersion(PROJECT_ID, CID, VERSION_NAME);
+    const estimatedGasLimit = await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
+    const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
     
-    await tx.wait();
-    if (tx.status === 0)
+    txUnsigned.chainId = 11155111; // chainId 11155111 for Sepolia
+    txUnsigned.gasLimit = estimatedGasLimit;
+    txUnsigned.gasPrice = await provider.getGasPrice();
+    txUnsigned.nonce = await provider.getTransactionCount(walletAddress);
+
+    console.log("txUnsigned", txUnsigned);
+
+    const txSigned = await signer.signTransaction(txUnsigned);
+    const submittedTx = await provider.sendTransaction(txSigned);
+    const txReceipt = await submittedTx.wait();
+    if (txReceipt.status === 0)
         throw new Error("proposeVersion transaction failed");
 
     console.log("proposeVersion successful!", tx);
