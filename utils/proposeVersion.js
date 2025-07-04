@@ -27,7 +27,7 @@ async function run() {
     ]
 
     const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, wallet);
-    const estimatedGasLimit = "500000n"; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
+    const estimatedGasLimit = 5000000n; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
     const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
     
     //txUnsigned.nonce = await wallet.getNonce("pending");
