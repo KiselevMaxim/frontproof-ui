@@ -27,12 +27,12 @@ async function run() {
     ]
 
     const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, wallet);
-    const estimatedGasLimit = 500000n; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
+    const estimatedGasLimit = "500000n"; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
     const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
     
     //txUnsigned.nonce = await wallet.getNonce("pending");
     txUnsigned.gasLimit = estimatedGasLimit;
-    txUnsigned.chainId = /* await wallet.provider.getNetwork(); */ 11155111n; // chainId 11155111 for Sepolia
+    txUnsigned.chainId = /* await wallet.provider.getNetwork(); */ "11155111n"; // chainId 11155111 for Sepolia
     //txUnsigned.gasPrice = await provider.getGasPrice();
 
     console.log("txUnsigned", txUnsigned);
