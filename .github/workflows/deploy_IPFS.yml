@@ -34,3 +34,5 @@ jobs:
       - name: Blockchain call
         run: |
           node utils/proposeVersion.js
+        env: 
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
