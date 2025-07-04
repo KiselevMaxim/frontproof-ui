@@ -27,7 +27,7 @@ async function run() {
     ]
 
     const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, wallet);
-    const estimatedGasLimit = await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
+    const estimatedGasLimit = 500000; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
     const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
     
     txUnsigned.chainId = 11155111; // chainId 11155111 for Sepolia
