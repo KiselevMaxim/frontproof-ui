@@ -29,6 +29,5 @@ jobs:
           remove-old: true
       - name: Log Deploy to IPFS
         run: |
-          echo "Deployed Hash: ${{ steps.deploy_IPFS.outputs.HASH }}"
-          |
+          echo "Deployed Hash: ${{ steps.deploy_IPFS.outputs.HASH }}" &&
           echo "CID=${{ steps.deploy_IPFS.outputs.HASH }}" >> $GITHUB_ENV
