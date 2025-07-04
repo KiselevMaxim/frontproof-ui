@@ -32,7 +32,7 @@ async function run() {
     
     txUnsigned.chainId = 11155111; // chainId 11155111 for Sepolia
     txUnsigned.gasLimit = estimatedGasLimit;
-    txUnsigned.gasPrice = await provider.getGasPrice();
+    //txUnsigned.gasPrice = await provider.getGasPrice();
     txUnsigned.nonce = await provider.getTransactionCount(walletAddress);
 
     console.log("txUnsigned", txUnsigned);
