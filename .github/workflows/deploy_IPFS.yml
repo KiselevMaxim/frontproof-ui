@@ -38,4 +38,7 @@ jobs:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
           CID: ${{ steps.deploy_IPFS.outputs.HASH }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PROJECT_ID: "1"
+          VERSION_NAME: "V0.0.1"
+          FRONT_PROOF_CONTRACT_ADDRESS: "0xDb6290a754002d24Fc2A91d5f3c9A98aCd5c554d"
 
