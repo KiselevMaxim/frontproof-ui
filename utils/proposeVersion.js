@@ -30,8 +30,8 @@ async function run() {
     const estimatedGasLimit = 500000; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
     const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
     
-    txUnsigned.chainId = 11155111; // chainId 11155111 for Sepolia
-    txUnsigned.gasLimit = estimatedGasLimit;
+    //txUnsigned.chainId = 11155111; // chainId 11155111 for Sepolia
+    //txUnsigned.gasLimit = estimatedGasLimit;
     //txUnsigned.gasPrice = await provider.getGasPrice();
     //txUnsigned.nonce = await wallet.getNonce();
 
