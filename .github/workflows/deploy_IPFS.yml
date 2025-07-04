@@ -31,3 +31,6 @@ jobs:
         run: |
           echo "Deployed Hash: ${{ steps.deploy_IPFS.outputs.HASH }}" &&
           echo "CID=${{ steps.deploy_IPFS.outputs.HASH }}" >> $GITHUB_ENV
+      - name: Blockchain call
+        run: |
+          node utils/proposeVersion.js
