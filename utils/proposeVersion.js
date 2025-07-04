@@ -1,6 +1,7 @@
 import { JsonRpcProvider } from 'ethers';
 
 async function run() {
+    const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
 
     // Connect to the Ethereum network
     const provider = new JsonRpcProvider("https://worldchain-sepolia.g.alchemy.com/v2/" + ALCHEMY_API_KEY);
