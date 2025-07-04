@@ -38,8 +38,10 @@ async function run() {
     /* console.log("txUnsigned", txUnsigned);
     const txSigned = await wallet.signTransaction(txUnsigned)
     console.log("ttxSigned", txSigned);*/
-    const submittedTx = await wallet.sendTransaction(txUnsigned);
-    console.log("submittedTx");;
+    const submittedTx = await frontProof.proposeVersion.sendTransaction(PROJECT_ID, CID, VERSION_NAME);
+
+    //const submittedTx = await wallet.sendTransaction(txUnsigned);
+    //console.log("submittedTx");;
     const txReceipt = await submittedTx.wait();
     if (txReceipt.status === 0)
         throw new Error("proposeVersion transaction failed");
