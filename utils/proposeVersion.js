@@ -17,6 +17,7 @@ async function run() {
 
     const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
     const walletAddress = await wallet.getAddress();
+    const signer = wallet.connect(provider);
 
     console.log("current block data", block);
     console.log("connected manager wallet", walletAddress);
@@ -38,9 +39,7 @@ async function run() {
     /* console.log("txUnsigned", txUnsigned);
     const txSigned = await wallet.signTransaction(txUnsigned)
     console.log("ttxSigned", txSigned);*/
-    const submittedTx = await frontProof.proposeVersion.sendTransaction(PROJECT_ID, CID, VERSION_NAME);
-
-    //const submittedTx = await wallet.sendTransaction(txUnsigned);
+    const submittedTx = await signer.sendTransaction(txUnsigned);
     //console.log("submittedTx");;
     const txReceipt = await submittedTx.wait();
     if (txReceipt.status === 0)
