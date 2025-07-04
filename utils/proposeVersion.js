@@ -16,9 +16,10 @@ async function run() {
     const block = await provider.getBlock(blockNumber);
 
     const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+    const walletAddress = await wallet.getAddress();
 
     console.log("current block data", block);
-    console.log("connected manager wallet", await wallet.getAddress());
+    console.log("connected manager wallet", walletAddress);
     console.log("CID", CID);
 
     const to = "0x..."; // Recipient address
@@ -28,7 +29,24 @@ async function run() {
     ]
 
     const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, wallet);
-    await frontProof.proposeVersion(PROJECT_ID, CID, VERSION_NAME);
+    const estimatedGasLimit = await frontProof.estimateGas.proposeVersion(PROJECT_ID, CID, VERSION_NAME);
+    const txUnsigned = await frontProof.populateTransaction.proposeVersion(PROJECT_ID, CID, VERSION_NAME);
+    
+    txUnsigned.chainId = 11155111; // chainId 11155111 for Sepolia
+    txUnsigned.gasLimit = estimatedGasLimit;
+    txUnsigned.gasPrice = await provider.getGasPrice();
+    txUnsigned.nonce = await provider.getTransactionCount(walletAddress);
+
+    console.log("txUnsigned", txUnsigned);
+
+    const txSigned = await signer.signTransaction(txUnsigned);
+    const submittedTx = await provider.sendTransaction(txSigned);
+    const txReceipt = await submittedTx.wait();
+    if (txReceipt.status === 0)
+        throw new Error("proposeVersion transaction failed");
+
+    console.log("proposeVersion successful!");
+    
 }
 
 run();
