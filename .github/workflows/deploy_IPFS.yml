@@ -37,5 +37,5 @@ jobs:
         env: 
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
           CID: ${{ steps.deploy_IPFS.outputs.HASH }}
-          
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 
