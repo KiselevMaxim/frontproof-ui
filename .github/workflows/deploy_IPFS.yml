@@ -19,6 +19,7 @@ jobs:
       - name: Build project
         run: npm run build
       - name: Deploy to IPFS
+        id: deploy_IPFS
         uses: anantaramdas/ipfs-pinata-deploy-action@v1.6.4
         with:
           pin-name: 'My IPFS Project'
@@ -26,3 +27,6 @@ jobs:
           pinata-api-key: ${{ secrets.PINATA_API_KEY }}
           pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY }}
           remove-old: true
+      - name: Log Deploy to IPFS
+        run: |
+          echo "Deployed Hash: ${{ steps.deploy_IPFS.outputs.HASH }}"
