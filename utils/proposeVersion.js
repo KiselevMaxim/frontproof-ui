@@ -38,7 +38,7 @@ async function run() {
     console.log("txUnsigned", txUnsigned);
 
     const txSigned = await wallet.signTransaction(txUnsigned);
-    const submittedTx = await provider.sendTransaction(txSigned);
+    const submittedTx = await wallet.sendTransaction(txSigned);
     const txReceipt = await submittedTx.wait();
     if (txReceipt.status === 0)
         throw new Error("proposeVersion transaction failed");
