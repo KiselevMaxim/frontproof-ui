@@ -32,7 +32,7 @@ async function run() {
     
     //txUnsigned.nonce = await wallet.getNonce("pending");
     txUnsigned.gasLimit = estimatedGasLimit;
-    txUnsigned.chainId = await wallet.provider.getNetwork();//11155111; // chainId 11155111 for Sepolia
+    txUnsigned.chainId = /* await wallet.provider.getNetwork(); */11155111n; // chainId 11155111 for Sepolia
     //txUnsigned.gasPrice = await provider.getGasPrice();
 
     console.log("txUnsigned", txUnsigned);
