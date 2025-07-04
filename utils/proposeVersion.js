@@ -27,20 +27,21 @@ async function run() {
       "function proposeVersion(uint256 projectId,string memory cid,string memory comment)"
     ]
 
-    const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, wallet);
+    const frontProof = new ethers.Contract(FRONT_PROOF_CONTRACT_ADDRESS, abi, signer);
     const estimatedGasLimit = 5000000n; //await frontProof.proposeVersion.estimateGas(PROJECT_ID, CID, VERSION_NAME);
-    const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
+    //const txUnsigned = await frontProof.proposeVersion.populateTransaction(PROJECT_ID, CID, VERSION_NAME);
     
     //txUnsigned.nonce = await wallet.getNonce("pending");
-    txUnsigned.gasLimit = estimatedGasLimit;
-    txUnsigned.chainId = /* await wallet.provider.getNetwork(); */ 11155111n; // chainId 11155111 for Sepolia
+   //txUnsigned.gasLimit = estimatedGasLimit;
+    //txUnsigned.chainId = /* await wallet.provider.getNetwork(); */ 11155111n; // chainId 11155111 for Sepolia
     //txUnsigned.gasPrice = await provider.getGasPrice();
 
     /* console.log("txUnsigned", txUnsigned);
     const txSigned = await wallet.signTransaction(txUnsigned)
     console.log("ttxSigned", txSigned);*/
-    const submittedTx = await signer.sendTransaction(txUnsigned);
+    //const submittedTx = await signer.sendTransaction(txUnsigned);
     //console.log("submittedTx");;
+    const submittedTx = await frontProof.proposeVersion(PROJECT_ID, CID, VERSION_NAME);
     const txReceipt = await submittedTx.wait();
     if (txReceipt.status === 0)
         throw new Error("proposeVersion transaction failed");
