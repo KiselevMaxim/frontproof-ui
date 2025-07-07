@@ -19,7 +19,6 @@ async function run() {
     const walletAddress = await wallet.getAddress();
     const signer = wallet.connect(provider);
 
-    console.log("current block data", block);
     console.log("connected manager wallet", walletAddress);
     console.log("CID", CID);
 
